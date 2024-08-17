@@ -1,0 +1,11 @@
+// Express.js example
+app.post('/track-visits', (req, res) => {
+  // Access the user ID and visit count from the request body
+  const { userId, visits } = req.body;
+
+  // Process the data (e.g., store it in a database, log it, etc.)
+  saveVisitData(userId, visits);
+
+  // Send a response back to the client
+  res.status(200).json({ message: 'Visit data received successfully' });
+});
