@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Website</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #1f2833;
+      color: #ffffff;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background-color: #34495e;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* Main Content Styles */
+    main {
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    p {
+      line-height: 1.5;
+      color: #95a5a6;
+    }
+
+    .status {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .status-item {
+      background-color: #2c3e50;
+      border: 1px solid #34495e;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin: 0 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-item h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #ffffff;
+    }
+
+    .status-item p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #95a5a6;
+    }
+
+    .status-item p.online {
+      color: #2ecc71;
+    }
+
+    .status-item p.offline {
+      color: #e74c3c;
+    }
+
+    #about-section, #api-section {
+      display: none;
+    }
+
+    .discord-section {
+      margin-top: 20px;
+    }
+
+    .discord-section p {
+      margin-bottom: 10px;
+    }
+
+    .discord-section a {
+      display: inline-block;
+      background-color: #7289da;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .button-container a {
+      display: inline-block;
+      background-color: #2c3e50;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    .redirect-button {
+      display: block;
+      background-color: #2c3e50;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* Footer Styles */
+    footer {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Website</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#" onclick="toggleAboutSection(); return false;">About</a></li>
+      <li><a href="#" onclick="toggleApiSection(); return false;">API</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div id="home">
+      <div class="status">
+        <div class="status-item">
+          <h3>Script Status</h3>
+          <p class="online">Online</p>
+        </div>
+        <div class="status-item">
+          <h3>Website Status</h3>
+          <p class="online">Online</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="about-section">
+      <h2>About Me</h2>
+      <p>I am a passionate individual who loves to build things and explore new ideas. My website is a reflection of my interests and experiences.</p>
+      <p>Feel free to explore the different sections and let me know if you have any questions or feedback.</p>
+
+      <div class="discord-section">
+        <h3>Discord Server</h3>
+        <p>Join my Discord server to connect with like-minded individuals:</p>
+        <a href="https://discord.gg/abcdefgh">Join Discord Server</a>
+      </div>
+
+      <div class="button-container">
+        <a href="https://example.com/main-script">Get My Main Script</a>
+        <a href="https://example.com/project-scorpion">Get Project Scorpion</a>
+      </div>
+
+      <a href="https://example.com" class="redirect-button">Redirect to Another Website</a>
+    </div>
+
+    <div id="api-section">
+      <h2>API</h2>
+      <p>Our API provides access to a variety of data and services. You can use it to build custom applications and integrate with our platform.</p>
+      <p>To get started, check out our <a href="https://example.com/api-docs">API documentation</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 My Website. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleAboutSection() {
+      var aboutSection = document.getElementById('about-section');
+      if (aboutSection.style.display === 'none') {
+        aboutSection.style.display = 'block';
+        document.getElementById('api-section').style.display = 'none';
+      } else {
+        aboutSection.style.display = 'none';
+      }
+    }
+
+    function toggleApiSection() {
+      var apiSection = document.getElementById('api-section');
+      if (apiSection.style.display === 'none') {
+        apiSection.style.display = 'block';
+        document.getElementById('about-section').style.display = 'none';
+      } else {
+        apiSection.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+</html>
