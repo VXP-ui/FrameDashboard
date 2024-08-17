@@ -1,0 +1,80 @@
+// server.js
+const express = require('express');
+const app = express();
+const port = 3000;
+
+// Sample data
+const users = [
+  { id: 1, name: 'John Doe', email: 'john@example.com' },
+  { id: 2, name: 'Jane Smith', email: 'jane@example.com' },
+  { id: 3, name: 'Bob Johnson', email: 'bob@example.com' },
+];
+
+// Whitelist and blacklist
+const whitelist = ['john@example.com', 'jane@example.com'];
+const blacklist = ['bob@example.com'];
+
+// Middleware
+app.use(express.json());
+
+// Whitelist and blacklist check middleware
+const checkAccessControl = (req, res, next) => {
+  if (req.method === 'GET' || req.method === 'DELETE') {
+    next();
+  } else {
+    const email = req.body.email;
+    if (blacklist.includes(email)) {
+      res.status(403).json({ error: 'Forbidden' });
+    } else if (whitelist.includes(email)) {
+      next();
+    } else {
+      res.status(403).json({ error: 'Forbidden' });
+    }
+  }
+};
+
+app.use(checkAccessControl);
+
+// API routes
+app.get('/api/users', (req, res) => {
+  res.json(users);
+});
+
+app.get('/api/users/:id', (req, res) => {
+  const user = users.find(u => u.id === parseInt(req.params.id));
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  res.json(user);
+});
+
+app.post('/api/users', (req, res) => {
+  const { name, email } = req.body;
+  const newUser = { id: users.length + 1, name, email };
+  users.push(newUser);
+  res.status(201).json(newUser);
+});
+
+app.put('/api/users/:id', (req, res) => {
+  const { name, email } = req.body;
+  const user = users.find(u => u.id === parseInt(req.params.id));
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  user.name = name;
+  user.email = email;
+  res.json(user);
+});
+
+app.delete('/api/users/:id', (req, res) => {
+  const userIndex = users.findIndex(u => u.id === parseInt(req.params.id));
+  if (userIndex === -1) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  const deletedUser = users.splice(userIndex, 1)[0];
+  res.json(deletedUser);
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
