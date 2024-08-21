@@ -3,243 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>Vxp Dashboard</title>
   <style>
     /* Global Styles */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #1f2833;
-      color: #ffffff;
-    }
-
-    /* Header Styles */
-    header {
-      background-color: #2c3e50;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-    }
-
-    /* Navigation Styles */
-    nav {
-      background-color: #34495e;
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      padding: 10px 0;
-    }
-
-    nav ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-    }
-
-    nav li {
-      margin: 0 10px;
-    }
-
-    nav a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* Main Content Styles */
-    main {
-      padding: 20px;
-    }
-
-    h2 {
-      color: #2c3e50;
-    }
-
-    p {
-      line-height: 1.5;
-      color: #95a5a6;
-    }
-
-    .status {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .status-item {
-      background-color: #2c3e50;
-      border: 1px solid #34495e;
-      border-radius: 5px;
-      padding: 10px 20px;
-      margin: 0 10px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .status-item h3 {
-      margin: 0;
+      background-color: #1a1a1a;
+      color: #f2f2f2;
       font-size: 16px;
-      color: #ffffff;
     }
 
-    .status-item p {
-      margin: 5px 0 0 0;
-      font-size: 14px;
-      color: #95a5a6;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
     }
 
-    .status-item p.online {
-      color: #2ecc71;
-    }
-
-    .status-item p.offline {
-      color: #e74c3c;
-    }
-
-    #about-section, #api-section {
-      display: none;
-    }
-
-    .discord-section {
-      margin-top: 20px;
-    }
-
-    .discord-section p {
-      margin-bottom: 10px;
-    }
-
-    .discord-section a {
-      display: inline-block;
-      background-color: #7289da;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    .button-container {
+    /* Tab Styles */
+    .tab-header {
       display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      margin-bottom: 30px;
     }
 
-    .button-container a {
-      display: inline-block;
-      background-color: #2c3e50;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-    }
-
-    .redirect-button {
-      display: block;
-      background-color: #2c3e50;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    /* Footer Styles */
-    footer {
-      background-color: #2c3e50;
-      color: #fff;
-      padding: 10px;
-      text-align: center;
+    .tab-header button {
+      background-color: #333;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 8px 16px;
+      transition: background-color 0.3s ease;
       font-size: 14px;
+      border-radius: 18px;
+      margin: 0 8px;
+    }
+
+    .tab-header button.active {
+      background-color: #4d4d4d;
+    }
+
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateY(20px);
+      border-radius: 15px;
+      padding: 25px;
+      background-color: #2a2a2a;
+      margin-bottom: 40px;
+    }
+
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Button Styles */
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      margin: 12px 4px;
+      cursor: pointer;
+      border-radius: 18px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>VXP NETWORKS</h1>
-  </header>
-
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#" onclick="toggleAboutSection(); return false;">About</a></li>
-      <li><a href="#" onclick="toggleApiSection(); return false;">API</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <div id="home">
-      <div class="status">
-        <div class="status-item">
-          <h3>Script Status</h3>
-          <p class="online">Online</p>
-        </div>
-        <div class="status-item">
-          <h3>Website Status</h3>
-          <p class="online">Online</p>
-        </div>
-      </div>
+  <div class="container">
+    <h1 style="font-size: 30px; text-align: center; margin-top: 0;">Vxp Dashboard</h1>
+    <div class="tab-header">
+      <button class="tab-btn active">Status</button>
+      <button class="tab-btn">Buy Premium</button>
+      <button class="tab-btn">About</button>
+      <button class="tab-btn">API</button>
     </div>
 
-    <div id="about-section">
-      <h2>About Me</h2>
-      <p>I am a scripter that codes in lua and sometimes html. I make a lot of scripts for games which I keep in my Universal Script which you can get from my discord server or from the redirect!</p>
-      <p>Feel free to explore the different sections and let me know if you have any questions or feedback.</p>
-
-      <div class="discord-section">
-        <h3>Discord Server</h3>
-        <p>Join my Discord server to connect with like-minded individuals:</p>
-        <a href="https://discord.gg/etVYz8CnsW">Join Discord Server</a>
-      </div>
-
-      <div class="button-container">
-        <a href="https://pastebin.com/raw/9SwQ05zS">Get My Main Script</a>
-        <a href="https://example.com/project-scorpion">Get Project Scorpion. NOT FINISHED</a>
-      </div>
-
-      <a href="https://vxp-ui.github.io/VxpStatus/" class="redirect-button">Redirect to my other status check.</a>
+    <div class="tab-content active">
+      <h2 style="font-size: 20px;">Status</h2>
+      <p style="font-size: 16px;">Website Status: <span id="status-message" style="font-size: 16px;">Online</span></p>
+      <a href="https://vxp-ui.github.io/VxpStatus/" class="button">Status Checker V4</a>
     </div>
 
-    <div id="api-section">
-      <h2>API</h2>
-      <p>My API provides access to a simple Blacklist and whitelist feature, fetches user IDs. Create a new user, delete one, update, and handles error.</p>
-      <p>To get started, check out my <a href="https://github.com/VXP-ui/VXP-ui/tree/main">API documentation</a>.</p>
+    <div class="tab-content">
+      <h2 style="font-size: 20px;">Buy Premium</h2>
+      <p style="font-size: 16px;">Premium Features:</p>
+      <ul style="font-size: 16px;">
+        <li>Keyless Access to my scripts</li>
+        <li>Access Premium Only Features</li>
+        <li>Etc, Click on buy premium for more info</li>
+      </ul>
+      <a href="https://vxp-ui.github.io/PremiumWeb/" class="button">Buy Premium</a>
     </div>
-  </main>
 
-  <footer>
-    <p>&copy; 2024 VXP Networks. All rights reserved.</p>
-  </footer>
+    <div class="tab-content">
+      <h2 style="font-size: 20px;">About</h2>
+      <p style="font-size: 16px;">Hello, My names VXP. I make lua code and scripts for games. I have a lot of scripts in my universal UI which you can access at my script website! Join my discord for new updates and executors.</p>
+      <a href="https://discord.gg/etVYz8CnsW" class="button">Join Discord</a>
+      <a href="https://pastebin.com/raw/9SwQ05zS" class="button">View My Scripts</a>
+    </div>
+
+    <div class="tab-content">
+      <h2 style="font-size: 20px;">API</h2>
+      <p style="font-size: 16px;">Check Out My API Documentation For More Info.</p>
+      <a href="https://github.com/VXP-ui/VXP-ui" class="button">Visit API</a>
+    </div>
+  </div>
 
   <script>
-    function toggleAboutSection() {
-      var aboutSection = document.getElementById('about-section');
-      if (aboutSection.style.display === 'none') {
-        aboutSection.style.display = 'block';
-        document.getElementById('api-section').style.display = 'none';
-      } else {
-        aboutSection.style.display = 'none';
-      }
-    }
+    // Tab functionality
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
 
-    function toggleApiSection() {
-      var apiSection = document.getElementById('api-section');
-      if (apiSection.style.display === 'none') {
-        apiSection.style.display = 'block';
-        document.getElementById('about-section').style.display = 'none';
-      } else {
-        apiSection.style.display = 'none';
-      }
-    }
+    tabBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all buttons and contents
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => {
+          c.classList.remove('active');
+          c.style.opacity = '0';
+          c.style.transform = 'translateY(20px)';
+        });
+
+        // Add active class to the clicked button and its corresponding content
+        btn.classList.add('active');
+        tabContents[index].classList.add('active');
+        tabContents[index].style.opacity = '1';
+        tabContents[index].style.transform = 'translateY(0)';
+      });
+    });
+
+    // Set the status message
+    const statusMessage = document.getElementById('status-message');
+    statusMessage.textContent = 'Online';
   </script>
-</body>
-</html>
-
-<!-- Rest of your HTML content -->
-
-<script src="traffic-tracker.js"></script>
 </body>
 </html>
