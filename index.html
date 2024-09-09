@@ -4,45 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vxp Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
   <style>
     /* Global Styles */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #1a1a1a;
-      color: #f2f2f2;
+      background: #121212;
+      overflow: hidden;
+      color: #e0e0e0;
       font-size: 16px;
+      line-height: 1.6;
     }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Roboto', sans-serif; /* Use a better font */
+      font-size: 48px; /* Larger font size */
+      text-align: center;
+      margin-top: 0;
+      animation: fadeIn 1s ease, breathe 2s infinite, colorChange 5s infinite; /* Fade-in, breathing, and color change */
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05); /* Slightly increase size */
+      }
+    }
+
+    @keyframes colorChange {
+      0%, 100% {
+        color: #4CAF50; /* Original color */
+      }
+      50% {
+        color: #006400; /* Dark green */
+      }
     }
 
     /* Tab Styles */
     .tab-header {
       display: flex;
       justify-content: center;
-      margin-top: 40px;
-      margin-bottom: 30px;
+      margin: 40px 0 30px;
     }
 
     .tab-header button {
-      background-color: #333;
+      background-color: rgba(31, 31, 31, 0.9); /* Slight transparency */
       border: none;
       outline: none;
       cursor: pointer;
-      padding: 8px 16px;
-      transition: background-color 0.3s ease;
-      font-size: 14px;
-      border-radius: 18px;
-      margin: 0 8px;
+      padding: 10px 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      font-size: 16px;
+      border-radius: 20px;
+      margin: 0 10px;
+      color: #b0b0b0;
+      animation: popIn 0.8s ease, buttonBreathe 2s infinite; /* Added breathing effect */
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes buttonBreathe {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05); /* Slightly increase size */
+      }
     }
 
     .tab-header button.active {
-      background-color: #4d4d4d;
+      background-color: rgba(76, 175, 80, 1); /* Opaque active button */
+      color: white;
+    }
+
+    .tab-header button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Glow effect on hover */
     }
 
     .tab-content {
@@ -51,8 +108,9 @@
       transition: opacity 0.3s ease, transform 0.3s ease;
       transform: translateY(20px);
       border-radius: 15px;
-      padding: 25px;
-      background-color: #2a2a2a;
+      padding: 30px;
+      background-color: rgba(42, 42, 42, 0.9); /* Slight transparency */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
       margin-bottom: 40px;
     }
 
@@ -64,28 +122,87 @@
 
     /* Button Styles */
     .button {
-      background-color: #4CAF50;
+      background-color: rgba(76, 175, 80, 0.9); /* Slight transparency */
       border: none;
       color: white;
-      padding: 10px 20px;
+      padding: 12px 24px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
-      font-size: 14px;
+      font-size: 16px;
       margin: 12px 4px;
       cursor: pointer;
-      border-radius: 18px;
-      transition: background-color 0.3s ease;
+      border-radius: 20px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      animation: popIn 0.8s ease, buttonBreathe 2s infinite; /* Added breathing effect */
     }
 
     .button:hover {
-      background-color: #45a049;
+      background-color: rgba(69, 160, 73, 1);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.5); /* Glow effect on hover */
+    }
+
+    /* Footer Styles */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+      font-size: 14px;
+      color: #b0b0b0;
+      border-top: 1px solid #4CAF50;
+    }
+
+    /* Background Animation */
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: move 10s linear infinite;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    @keyframes move {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        transform: translate(200px, 200px) scale(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .button {
+        padding: 10px 16px;
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 36px; /* Adjust for smaller screens */
+      }
+
+      .tab-header button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="background-animation"></div>
   <div class="container">
-    <h1 style="font-size: 30px; text-align: center; margin-top: 0;">Vxp Dashboard</h1>
+    <h1>Vxp Dashboard</h1>
     <div class="tab-header">
       <button class="tab-btn active">Status</button>
       <button class="tab-btn">Buy Premium</button>
@@ -94,15 +211,15 @@
     </div>
 
     <div class="tab-content active">
-      <h2 style="font-size: 20px;">Status</h2>
-      <p style="font-size: 16px;">Website Status: <span id="status-message" style="font-size: 16px;">Online</span></p>
+      <h2>Status</h2>
+      <p>Website Status: <span id="status-message">Online</span></p>
       <a href="https://vxp-ui.github.io/VxpStatus/" class="button">Status Checker V4</a>
     </div>
 
     <div class="tab-content">
-      <h2 style="font-size: 20px;">Buy Premium</h2>
-      <p style="font-size: 16px;">Premium Features:</p>
-      <ul style="font-size: 16px;">
+      <h2>Buy Premium</h2>
+      <p>Premium Features:</p>
+      <ul>
         <li>Keyless Access to my scripts</li>
         <li>Access Premium Only Features</li>
         <li>Etc, Click on buy premium for more info</li>
@@ -111,20 +228,40 @@
     </div>
 
     <div class="tab-content">
-      <h2 style="font-size: 20px;">About</h2>
-      <p style="font-size: 16px;">Hello, My names VXP. I make lua code and scripts for games. I have a lot of scripts in my universal UI which you can access at my script website! Join my discord for new updates and executors.</p>
+      <h2>About</h2>
+      <p>Hello, My name is VXP. I make lua code and scripts for games. I have a lot of scripts in my universal UI which you can access at my script website! Join my discord for new updates and executors.</p>
       <a href="https://discord.gg/etVYz8CnsW" class="button">Join Discord</a>
       <a href="https://pastebin.com/raw/9SwQ05zS" class="button">View My Scripts</a>
     </div>
 
     <div class="tab-content">
-      <h2 style="font-size: 20px;">API</h2>
-      <p style="font-size: 16px;">Check Out My API Documentation For More Info.</p>
+      <h2>API</h2>
+      <p>Check Out My API Documentation For More Info.</p>
       <a href="https://github.com/VXP-ui/VXP-ui" class="button">Visit API</a>
     </div>
+
+    <footer>
+      &copy; 2024 VXP. All rights reserved.
+    </footer>
   </div>
 
   <script>
+    // Create particles for background animation
+    const numParticles = 100;
+    const backgroundAnimation = document.querySelector('.background-animation');
+
+    for (let i = 0; i < numParticles; i++) {
+      const particle = document.createElement('div');
+      const size = Math.random() * 10 + 5; // Particle size between 5 and 15px
+      particle.classList.add('particle');
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${Math.random() * 100}vw`;
+      particle.style.top = `${Math.random() * 100}vh`;
+      particle.style.animationDuration = `${Math.random() * 6 + 4}s`; // Random duration between 4s and 10s
+      backgroundAnimation.appendChild(particle);
+    }
+
     // Tab functionality
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
